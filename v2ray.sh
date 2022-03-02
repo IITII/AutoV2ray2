@@ -77,11 +77,11 @@ check_release() {
 }
 show_help() {
     echo "Usage:
-  $0 -h, --help            Show this page
-  $0 -w                    siteName
-  $0 -p, --path            v2ray web socket path, default \"/bin/date +\"%S\" | /usr/bin/base64\"
-  $0 -u, --uuid            v2ray uuid
-  $0 --ddns                dns.he.net ddns's key
+  $0 -h, --help  Show this page
+  $0 -w          siteName
+  $0 -p, --path  v2ray web socket path, default \"/bin/date +\"%S\" | /usr/bin/base64\"
+  $0 -u, --uuid  v2ray uuid
+  $0 --ddns      dns.he.net ddns's key
 "
 }
 check_command() {
@@ -135,6 +135,16 @@ update_ddns() {
     log "Sleep $SLEEP_TIME s --> Time for dns record update."
     sleep ${SLEEP_TIME}
     log "Update DDNS Record successful!!!"
+}
+bbr() {
+    log_info "Run follow command to enable bbr if your system is Ubuntu18.04 or newer
+    
+
+echo \"net.core.default_qdisc=fq\" >>/etc/sysctl.conf
+echo \"net.ipv4.tcp_congestion_control=bbr\" >>/etc/sysctl.conf
+sysctl -p
+    
+    "
 }
 pre_check_var() {
     log "Check necessary variable..."
@@ -215,9 +225,10 @@ main() {
     pre_command_run_status
 
     log "Modifying v2ray config file"
-    /bin/cat ${CURRENT_DIR}/conf/server.json | /bin/sed \
+    /bin/cat ${CURRENT_DIR}/conf/server_h2c.json | /bin/sed \
         -e "s/\"id\": \"\S\+/\"id\": \"$1\",/g" \
-        -e "s/\"path\": \"\S\+/\"path\": \"\/$2\"/g" |
+        -e "s/v2ray.com/$3/g" \
+        -e "s/\"path\": \"\S\+/\"path\": \"\/$2\",/g" |
         tee >/usr/local/etc/v2ray/config.json
     log "Reload v2ray..."
     systemctl restart v2ray && log_success "Success"
@@ -293,3 +304,4 @@ fi
 pre_check_var
 main ${uuid} ${wsPath} ${siteName}
 vmess_gen
+bbr
