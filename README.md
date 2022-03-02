@@ -4,6 +4,11 @@
 > 兼容最新版 V2ray(V2Ray 4.44.0+) 和 Caddy(v2.4.6+)  
 > 
 
+* 一般使用场景的流量转发方式
+```
+Chrome <-HTTP/Socks-> V2RayClient <-H2+TLS-> Caddy <-H2C-> V2RayServer <-Freedom-> Internet
+```
+
 * TLS+NGINX+WEB 的 v2ray 一键脚本: https://github.com/IITII/AutoV2ray
 
 ## QuickStart
