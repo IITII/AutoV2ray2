@@ -1,0 +1,26 @@
+# >/etc/caddy/Caddyfile && vim /etc/caddy/Caddyfile
+# caddy run --config /etc/caddy/Caddyfile
+https://v2ray.com {
+	log {
+		output stdout
+		format console
+		level INFO
+	}
+	handle_errors {
+		rewrite * /pic/{http.error.status_code}
+		file_server
+	}
+	root * /usr/share/caddy
+	file_server
+	tls {
+		issuer acme
+	}
+	reverse_proxy /path {
+		to h2c://127.0.0.1:23233
+		header_up Host {host}
+		header_up X-Real-IP {remote}
+		header_up X-Forwarded-For {remote}
+		header_up X-Forwarded-Port {server_port}
+		header_up X-Forwarded-Proto "https"
+	}
+}

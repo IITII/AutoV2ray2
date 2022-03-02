@@ -1,0 +1,16 @@
+proxies:
+  # vmess
+  # cipher support auto/aes-128-gcm/chacha20-poly1305/none
+  - name: v2ray.com
+    type: vmess
+    server: v2ray.com
+    port: 443
+    uuid: ruuid
+    alterId: 0
+    cipher: auto
+    tls: true
+    network: h2
+    h2-opts:
+      host:
+        - v2ray.com
+      path: /path

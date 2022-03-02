@@ -1,0 +1,47 @@
+{
+    "log": {
+        "loglevel": "info",
+        "access": "",
+        "error": ""
+    },
+    "inbounds": [
+        {
+            "port": "23233",
+            "listen": "127.0.0.1",
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "486a1159-8df0-1d24-7fd6-43df72421dce",
+                        "alterId": 64
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "h2",
+                "security": "tls",
+                "httpSettings": {
+                    "path": "/MjkK",
+                    "host": [
+                        "baidu.com"
+                    ]
+                },
+                "tlsSettings": {
+                    "serverName": "baidu.com",
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/nginx/ssl/baidu.com/fullchain.cer",
+                            "keyFile": "/etc/nginx/ssl/baidu.com/key.key"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ]
+}

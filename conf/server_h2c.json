@@ -1,0 +1,38 @@
+{
+    "log": {
+        "loglevel": "info",
+        "access": "",
+        "error": ""
+    },
+    "inbounds": [
+        {
+            "port": "23233",
+            "listen": "127.0.0.1",
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "486a1159-8df0-1d24-7fd6-43df72421dce",
+                        "alterId": 0
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "h2",
+                "security": "none",
+                "httpSettings": {
+                    "path": "/MjkK",
+                    "host": [
+                        "v2ray.com"
+                    ]
+                }
+            }
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ]
+}

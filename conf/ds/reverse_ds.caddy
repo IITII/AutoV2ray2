@@ -1,0 +1,26 @@
+# >/etc/caddy/Caddyfile && vim /etc/caddy/Caddyfile
+# caddy run --config /etc/caddy/Caddyfile
+https://baidu.com {
+	log {
+		output stdout
+		format console
+		level INFO
+	}
+
+	handle_errors {
+		# redir https://http.cat/{http.error.status_code}
+		rewrite * /pic/{http.error.status_code}
+		file_server
+	}
+	root * /usr/share/caddy
+	file_server
+	tls /etc/nginx/ssl/baidu.com/fullchain.cer /etc/nginx/ssl/baidu.com/key.key
+	reverse_proxy /MjkK {
+		to unix//run/v2ray_ds.sock
+		header_up Host {host}
+		header_up X-Real-IP {remote}
+		header_up X-Forwarded-For {remote}
+		header_up X-Forwarded-Port {server_port}
+		header_up X-Forwarded-Proto "https"
+	}
+}
