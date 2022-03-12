@@ -3,11 +3,14 @@
   "ps": "baidu.com",
   "add": "baidu.com",
   "port": "443",
-  "id": "fb42f84e-590d-11ea-83cf-00163e06bfa5",
+  "id": "uuid",
   "aid": "0",
+  "scy": "auto",
   "net": "h2",
   "type": "none",
-  "host": "",
+  "host": "baidu.com",
   "path": "/path",
+  "sni": "baidu.com",
+  "alpn": "h2",
   "tls": "tls"
 }
