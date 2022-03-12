@@ -4,6 +4,11 @@
 > 兼容最新版 V2ray(V2Ray 4.44.0+) 和 Caddy(v2.4.6+)  
 > 
 
+* 一般使用场景的流量转发方式
+```
+Chrome <-HTTP/Socks-> V2RayClient <-H2+TLS-> Caddy <-H2C-> V2RayServer <-Freedom-> Internet
+```
+
 * TLS+NGINX+WEB 的 v2ray 一键脚本: https://github.com/IITII/AutoV2ray
 
 ## QuickStart
@@ -94,3 +99,8 @@ curl -4 "https://$siteName:$he_net_ddns_key@dyn.dns.he.net/nic/update?hostname=$
 
 * ClashX 配置文件在 `1.90.0` 有一次较大的修改。
 * 本项目的配置文件基于新版的 ClashX，提问之前先确认自己 Clash 版本。
+
+## Troubleshooting
+* 查看 Caddy 和 V2ray 状态：`systemctl status v2ray caddy`
+* 查看 Caddy 和 V2ray 配置文件：`cat /etc/caddy/Caddyfile; cat /usr/local/etc/v2ray/config.json`
+* 直接 curl 看看，是不是防火墙的问题: `curl https://<网站域名>`
