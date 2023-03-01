@@ -154,7 +154,7 @@ pre_check_var() {
     fi
     if [[ -z ${uuid} ]]; then
         log "uuid is Empty, Generating..."
-        uuid=$(v2ctl uuid)
+        uuid=$(v2ray uuid)
         log "Now uuid is $uuid"
     fi
     if [[ -z ${wsPath} ]]; then
